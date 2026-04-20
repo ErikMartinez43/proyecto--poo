@@ -84,6 +84,7 @@ class SoftwareRepositorio {
         $stmtActivaciones = $this->conexion->prepare($sqlActivaciones);
         $stmtActivaciones->execute(['id'=>$id]);
 
+        
         //luego eliminamos el software
         $sql = "DELETE FROM software WHERE id = :id";
         $stmt = $this->conexion->prepare($sql);
