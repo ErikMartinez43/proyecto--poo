@@ -1,0 +1,5 @@
+-para arrancar el servidor se debe ejecutar desde la raiz del proyecto el siguiente comando: php -S localhost:8000
+-exporte la base de datos con pg_dump de postgres para que se visualice en cualquier maquina
+-para visualizar la pagina en el navegador esta es la direcion: http://localhost:8000
+-para ver los archivos de la api en formato json: http://localhost:8000/api/software.php, http://localhost:8000/api/modulo.php 
+

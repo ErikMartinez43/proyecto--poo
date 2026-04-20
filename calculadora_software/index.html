@@ -1,0 +1,32 @@
+<!DOCTYPE html> <!--documento html 5-->
+<html lang="es"> <!--idioma español-->
+    <head> <!--seccion de configuracion-->
+        <meta charset="UTF-8"> <!--para que acepte caracteres con tildes y ñ-->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!--hace que la pagina se vea bien en celulares-->
+        <title> Calculadora de Software</title> <!--titulo de la pestaña en el navegador-->
+    </head>
+    
+    <body>
+        <h1>Calculadora de Software</h1><!--titulo principal-->
+        <!--formulario para crear software-->
+        <div>
+            <h2> Nuevo Software</h2>
+            <input type="text" id="nombre" placeholder="Nombre del software" > <!--campo de texto para el nombre-->
+            <input type="text" id="descripcion" placeholder="Descripcion"> <!--campo de la descripcion-->
+            <input type="number" id="costo" placeholder="Costo"><!--campod para ingresar el costo-->
+            <button id="btnGuardar">Guardar</button> <!--boton para enviar el formulario-->
+        </div>
+        <div>
+            <h2>Softwares Resgistrados</h2><!--titulo del siguiente div-->
+            <!--listado con scrol fijo-->
+            <div id="listSoftware" style="max-height: 400px; overflow: auto;">
+                <!--aqui se cargaran los software registrados dinamicamente con javaScript-->
+            </div>
+        </div>
+        <!--ruta del script-->
+    <script src="js/app.js"></script>
+    </body>
+    
+</html>
+
+

@@ -1,0 +1,35 @@
+								bitacora
+domingo 19 de abril del 2026. 
+
+09:15 utilice una herramienta de php llamada PHP Build-in Server, es un servidor sencillo que viene incluido dentro de php, no necesita instalar frameworks adicionales como apache http server para usarse, entonce mediante el comando "php -S localhost:8000" asi levante un servidor en mi maquina.cree un nuevo archivo en la raiz del proyecto "index.html" donde coloque titulos, encabezados, botones etc, solo para darme una idea de como quedara mi pagina web.
+09:30 basandome en el modelo cliente servidor, organice los archivos para cree dos carpetas. he completado el index, ahora necesito mi programar en javascript (primera vez que lo hago) para completar el frontend de la pagina. y coloque los 3 archivos de las 3 tablas con las que estare trabajando en el servidor (la api) para el backend.
+09:35 ahora debo aplicar las operaciones CRUD en este archivo .js para capture los datos del usuario y los envie peticiones con fetch, dirigida a mi mi api, luego recibir las respuestas en un formato json, para mostrarlas en el fronted. comenzare declarando una funcion que me muestre todos los software en un contenedor, todos los registros en mi base de datos.
+
+10:00 no era buena idea, lo anterior hacia que se volviera muy complejo, el tener que limpiar los registros y luego volver cargarlos, le agrega complejidad, decidi mejor que se muestren todos los registros al momento de cargar el servidor. 
+
+10:15 trabaje en capturar los datos del formulario por medio del boton guardar.
+
+20:25 ahora necesito conectar el boton guardar para que cuando el usuario llene el formulario y le de click, se cree un nuevo software en la base de datos, para eso debo escribir un script en app.js para capturar el click del boton y enviarlo a la API api/software.php para que los reciba y los guarde en la base de datos.
+21:30 al agregar un nuevo software me quedo el formulario lleno con los datos que ingrese, necesito limpiar el formulario. para eso tendre que cambiar los valores de los campos con un caracter vacio '', despues de generar la alerta de software creado y antes de cargar la lista de software registrados.
+21:40 necesito crear un nuevo boton para borrar en mi formulario, lo voy a ubicar en la lista de softwares resgistrados, justo a la par de cada registro. primero lo escribire en html para visualizar su ubicacion.
+22:10 cree los botones en el app.js porque se van a crear dinamicamente en cada registro, luego implemente el boton de eliminar creando una funcion llamada elminarSoftware en el archivo app.js, condicione una alerta para confirmar luego utilice fetch para enviar una peticion a mi api de software indicandole el metodo "DELETE", converti el formato json a javascript y luego tome los datos envie una alerta de "resgistro eliminado" y volvi a cargar los registros.ahora necesito manejar esa peticion en mi api para obtener la respuesta.
+22:35 para conectar con la api escribi if en el que si se recibe una peticion de delete, se tomara el id de los datos ingresados al hacer click en el boton eliminar y si se confirma utilizo mi referencia de mi repositorio para llamar al metodo "eliminarSoftware". ahora continuare con el boton "editar", para eso de manera similar tendre que capturar el click y enviar una peticion parecida a "UPDATE" para manejar cualquiera de los parametros de mi software obtenido por su id.
+
+23:05 es mejor sobreescribir los registros al momento de hacer click en editar, llamare al software especfico con ese id, luego los cargare en mi formulario para editar los parametros, en este evento cambiare el nombre del boton guardar a actualizar.
+
+23:30 mi CRUD esta completo, ahora necesito agregar todo esto a la tabla modulo.
+
+lunes 20 de abril del 2026
+
+00:05 implemente la clase modulo.php en la api, como son valores fijos que se iran asignando a determinado software, solo agregue el metodo GET paraa obtener los 3 modulos puestos en el enunciado.
+
+00:24 implemente el metodo agregar activacion POST de fetch, que toma como parametros el id del software y el id del modulo.
+
+00:35 los archivos php en la api estan completos ahora debo colocar en cada modulo un boton de activar en selector de modulos disponibles y boton de desactivar para los modulos ya activados. para esto debo modificar el codigo de mi funcion cargarsoftwares.
+01:20 implemente una funcion llamada cargar todas las activaciones para que me muestre en una lista desplegabla los modulo para activarlo.
+01:45 uno de los paramatros en la funcion de activar modulo viene como string cuando lo extraigo del metodo textContet, necesito convertirlo a float para eso utilizare el metodo parseFloat(string), y cambiare los parametros de la funcion.
+02:00 tengo el mismo problema con la funcion desactivarModulo, tengo que cambiar la respuesta de fetch para que se muestre un float
+02:10 solucione el problema anterior agregando dos parametros al <div> un id del software y el costo, y se los pase a la lista del fetch, pero aun no me muestra el calculo total de las funcionalidades agregadas a cada software.
+02:30 cuando activaba un modulo no tenia guardado el costo en ningun lugar accesible, para que se agreguen dinamicamente tenia que colocar un nuevo atributo al <div> de la funcion cargarSoftware(), asi el costo original del software permanecera aunque el total cambie.tambien tenia que agregar este atributo en el selector, asi cuando se activa un modulo, javascript puede acceder a el por medio de option.dataset.costo.
+
+03:00 parece funcionar perfectamente. para arrancar el servidor es necesario ejecutar el comando "php -S localhost:8000" desde la raiz del proyecto, y en el navegador ir a al dominio: "http://localhost:8000", procedo a exportar mi base de datos para que se visualice en cualquier pc por medio de "pg_dump" de postgres
