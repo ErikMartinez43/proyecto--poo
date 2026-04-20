@@ -78,6 +78,13 @@ class SoftwareRepositorio {
     }
 
     public function eliminar($id){
+
+        //primero eliminamos las activaciones vinculadas
+        $sqlActivaciones = "DELETE FROM activacion WHERE id_software = :id";
+        $stmtActivaciones = $this->conexion->prepare($sqlActivaciones);
+        $stmtActivaciones->execute(['id'=>$id]);
+
+        //luego eliminamos el software
         $sql = "DELETE FROM software WHERE id = :id";
         $stmt = $this->conexion->prepare($sql);
         
