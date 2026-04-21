@@ -102,10 +102,20 @@ function cargarModulosDisponibles(id_software){
 function cargarActivaciones(id_software, costo_base){
     fetch('api/activacion.php?id_software='+id_software)
     .then(response => response.json())
-    .then(activaciones => {
+    .then(data => {
         const contenedor = document.getElementById('modulos-'+id_software);
         contenedor.innerHTML = '';
-        let total = parseFloat(costo_base);
+
+        //ahora vamos a calcular el total con php usando los decoradores
+        data.activaciones.forEach(activacion => {
+                contenedor.innerHTML +=`
+            <span>${activacion.nombre_modulo}
+            <button onclick="desactivarModulo(${activacion.id}, ${id_software}, ${costo_base})">X</button>
+            </span>
+            `;
+        });
+
+        /*let total = parseFloat(costo_base);
         activaciones.forEach(activacion => {
             const select = document.getElementById('select-'+id_software);
             const option = select.querySelector(`option[value="${activacion.id_modulo}"]`);
@@ -116,8 +126,9 @@ function cargarActivaciones(id_software, costo_base){
             <button onclick="desactivarModulo(${activacion.id}, ${id_software}, ${costo_base})">X</button>
             </span>
             `;
-        });
-        document.getElementById('total-'+id_software).textContent = 'Total -$'+ total.toFixed(2);
+        });*/
+        //todo viene calculado desde php usando el patron decorador, asi que solo mostramos el total
+        document.getElementById('total-'+id_software).textContent = 'Total -$'+ data.total.toFixed(2);
     });
 
 }
